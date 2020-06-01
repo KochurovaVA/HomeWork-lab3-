@@ -1,16 +1,8 @@
-#include <iostream>
+#include <vector>
 #include <string>
-#include "svg_module.h"
+#include <iostream>
 
-vector<string> colors( size_t bin_count)
-{
-    vector<string> cin_colors(bin_count);
-    for( size_t i = 0; i < bin_count; i++)
-    {
-        getline(cin, cin_colors[i]);
-    }
-    return cin_colors;
-}
+using namespace std;
 
 void svg_begin(double width, double height) {
     cout << "<?xml version='1.0' encoding='UTF-8'?>\n";
@@ -34,7 +26,6 @@ void svg_text(double left, double baseline, string text)
 {
     cout << "<text x='" << left << "' y='"<<baseline<<"'>"<< text <<"</text>";
 }
-
 void show_histogram_svg(const vector<size_t> & bins, const vector<string> & colors)
 {
     const auto IMAGE_WIDTH = 400;
@@ -48,9 +39,9 @@ void show_histogram_svg(const vector<size_t> & bins, const vector<string> & colo
     const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
     double top = 0;
-    string stroke = " black";
+    string stroke = "black";
     size_t max_count = 0;
-    for(size_t count : bins)
+    for (size_t count : bins)
     {
         if (count > max_count)
         {
@@ -59,7 +50,7 @@ void show_histogram_svg(const vector<size_t> & bins, const vector<string> & colo
     }
     const bool scaling_needed = max_count > MAX_ASTERISK;
     unsigned int color_count = 0;
-    for(size_t bin : bins)
+    for (size_t bin : bins)
     {
         if (scaling_needed)
         {
