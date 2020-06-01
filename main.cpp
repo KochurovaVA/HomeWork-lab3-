@@ -50,10 +50,10 @@ void make_histogram(const vector<double>& numbers, double& max, double& min, siz
         bins[bin_index]++;
     }
 }
-void show_histogram_text(vector <size_t>& bins)
+void show_histogram_text(vector <size_t>& X)
 {
-    size_t max_bin = bins[0];
-    for (size_t bin:bins)
+    size_t max_bin = X[0];
+    for (size_t bin:X)
     {
         if (bin > max_bin)
         {
@@ -63,7 +63,7 @@ void show_histogram_text(vector <size_t>& bins)
     if (max_bin > MAX_ASTERISK)
     {
         double factor = MAX_ASTERISK/static_cast<double>(max_bin);
-        for (size_t bin:bins)
+        for (size_t bin:X)
         {
             if (bin <100)
             {
@@ -74,6 +74,7 @@ void show_histogram_text(vector <size_t>& bins)
                 }
             }
             cout <<bin <<"|";
+
             size_t height = bin*factor;
             for(int i=0; i<height; i++)
             {
@@ -85,7 +86,7 @@ void show_histogram_text(vector <size_t>& bins)
 
     else
     {
-        for (size_t bin:bins)
+        for (size_t bin:X)
         {
             if (bin <100)
             {
@@ -131,7 +132,7 @@ int main() {
     double min, max;
 
     find_minmax(numbers, min, max);
-    const auto bins = make_histogram(numbers, bin_count);
+    const auto bins = make_histogram(numbers, min, max, bin_count);
 
     show_histogram_svg(bins, colors);
 
