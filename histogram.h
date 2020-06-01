@@ -1,12 +1,10 @@
-#ifndef HISTOGRAM_H_INCLUDED
-#define HISTOGRAM_H_INCLUDED
+#pragma once
 
 #include <vector>
 #include <string>
 
 using namespace std;
 
-void find_minmax(const vector<double>& numbers, double& min, double& max);
+void show_histogram_svg(const vector<size_t> & bins, const vector<string> & colors);
 
 
-#endif // HISTOGRAM_H_INCLUDED
