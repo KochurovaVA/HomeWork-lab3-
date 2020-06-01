@@ -52,13 +52,14 @@ void show_histogram_svg(const vector<size_t> & bins, const vector<string> & colo
     unsigned int color_count = 0;
     for (size_t bin : bins)
     {
+        size_t bin_noscaling = bin;
         if (scaling_needed)
         {
             const double scaling_factor = (double)MAX_ASTERISK / max_count;
             bin = (size_t)(bin * scaling_factor);
         }
         const double bin_width = BLOCK_WIDTH * bin;
-        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
+        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin_noscaling));
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, stroke, colors[color_count]);
         top += BIN_HEIGHT;
         color_count++;
